@@ -4,12 +4,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Método Campanha Desejada · Julia Cardoso Aragão</title>
-<meta name="description" content="Aprenda a criar campanhas que geram desejo de verdade — sem depender de desconto, sem improvisar e sem torcer para dar certo. O Método Campanha Desejada, por Julia Cardoso Aragão." />
+<meta name="description" content="Aprenda a criar campanhas que geram desejo de verdade, sem depender de desconto, sem improvisar e sem torcer para dar certo. O Método Campanha Desejada, por Julia Cardoso Aragão." />
 
 <!-- Open Graph / compartilhamento (substituir og:image pela arte 1200x630 definitiva) -->
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Método Campanha Desejada · Julia Cardoso Aragão" />
-<meta property="og:description" content="Campanhas que geram desejo de forma previsível — sem que o preço se torne uma objeção." />
+<meta property="og:description" content="Campanhas que geram desejo de forma previsível, sem que o preço se torne uma objeção." />
 <meta property="og:image" content="fotos/web/DSC09861.JPG" />
 <meta property="og:locale" content="pt_BR" />
 
@@ -44,6 +44,7 @@
   /* Cores de apoio */
   --white:        #FFFFFF;
   --beige:        #C4A882;  /* bordas, separadores, detalhes */
+  --gold:         #A87C39;  /* acento dourado (eyebrow, detalhes) */
   --brown-darkest:#1E110A;  /* texto corrido / hover */
 
   --ink: var(--brown-darkest);
@@ -207,68 +208,66 @@ h1,h2,h3{ margin:0; font-weight:500; }
    =========================================================== */
 .site-header{
   position:fixed; inset:0 0 auto 0; z-index:50;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:18px var(--gutter);
-  transition:background .35s ease, box-shadow .35s ease, padding .35s ease, color .35s ease;
-  color:var(--offwhite);
+  padding:18px 0;
+  transition:background .35s ease, box-shadow .35s ease, padding .35s ease;
 }
+.site-header__inner{ display:flex; align-items:center; justify-content:space-between; }
 .site-header.scrolled{
   background:rgba(245,240,232,.92);
   -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
   box-shadow:0 1px 0 rgba(196,168,130,.4);
-  color:var(--brown-dark);
   padding-block:12px;
 }
-.logo{ display:inline-flex; flex-direction:column; line-height:1; gap:3px; }
+.logo{ display:inline-flex; flex-direction:column; line-height:1; gap:3px; color:var(--brown-dark); }
 .logo__kicker{ font-family:var(--sans); font-weight:600; font-size:.6rem; letter-spacing:.34em; text-transform:uppercase; opacity:.85; }
 .logo__name{ font-family:var(--serif); font-style:italic; font-weight:500; font-size:1.4rem; letter-spacing:.01em; }
 .site-header .btn{ box-shadow:none; }
-.site-header:not(.scrolled) .btn--outline{ color:var(--offwhite); border-color:rgba(245,240,232,.7); }
-.site-header:not(.scrolled) .btn--outline:hover{ background:var(--offwhite); color:var(--brown-dark); }
 @media (max-width:560px){ .site-header .header-cta{ display:none; } }
 
 /* ===========================================================
    HERO
    =========================================================== */
-.hero{ position:relative; min-height:100svh; display:flex; align-items:flex-end; overflow:hidden; background:var(--cream); }
-.hero__media{ position:absolute; inset:0; }
-.hero__media img{ width:100%; height:100%; object-fit:cover; object-position:50% 16%; }
-@media (min-width:900px){ .hero__media img{ object-position:62% 18%; } }
-.hero__scrim{
-  position:absolute; inset:0;
-  background:
-    linear-gradient(180deg, rgba(30,17,10,.38) 0%, rgba(30,17,10,0) 20%, rgba(30,17,10,0) 40%, rgba(30,17,10,.55) 68%, rgba(30,17,10,.9) 100%),
-    linear-gradient(90deg, rgba(30,17,10,.55) 0%, rgba(30,17,10,.12) 50%, rgba(30,17,10,0) 80%);
+.hero{ position:relative; min-height:100svh; display:grid; grid-template-columns:1fr; background:var(--offwhite); overflow:hidden; }
+@media (min-width:880px){ .hero{ grid-template-columns:1.08fr .92fr; align-items:stretch; } }
+
+.hero__text{
+  position:relative; z-index:2;
+  display:flex; flex-direction:column; justify-content:center;
+  padding:128px clamp(28px,5vw,56px) 72px;
+  padding-left:max(clamp(28px,6vw,56px), calc((100vw - var(--maxw)) / 2 + var(--gutter)));
 }
-.hero__content{ position:relative; z-index:2; color:var(--offwhite); padding-block:140px clamp(64px,11vh,120px); text-shadow:0 1px 30px rgba(30,17,10,.5); }
-.hero__inner{ max-width:560px; }
-.hero .eyebrow{ color:#EFE0C9; text-shadow:0 1px 14px rgba(30,17,10,.7); max-width:30ch; }
-.hero .eyebrow::before{ background:rgba(239,224,201,.85); }
-.hero__content h1{ color:#fff; max-width:15ch; font-size:clamp(2.3rem,5.6vw,4.3rem); line-height:1.07; }
-.hero__content h1 em{ font-style:italic; font-weight:500; }
-.hero__sub{ font-size:clamp(1.06rem,2.1vw,1.3rem); line-height:1.62; color:rgba(245,240,232,.94); max-width:42ch; margin:1.8rem 0 2.6rem; }
+@media (max-width:879px){ .hero__text{ order:2; padding-top:48px; padding-bottom:64px; } }
+.hero__inner{ max-width:500px; }
+.hero__text .eyebrow{ color:var(--brown-mid); }
+.hero__text h1{ color:var(--brown-dark); max-width:14ch; font-size:clamp(2.2rem,3.9vw,3.6rem); line-height:1.08; }
+.hero__text h1 em{ font-style:italic; font-weight:500; }
+.hero__sub{ font-size:clamp(1.04rem,1.6vw,1.24rem); line-height:1.62; color:var(--brown-mid); max-width:42ch; margin:1.7rem 0 2.4rem; }
 .hero__actions{ display:flex; flex-wrap:wrap; gap:14px; align-items:center; }
-.hero__scroll{ position:absolute; left:50%; bottom:22px; transform:translateX(-50%); z-index:2; color:rgba(245,240,232,.7); font-size:.66rem; letter-spacing:.25em; text-transform:uppercase; display:flex; flex-direction:column; align-items:center; gap:8px; }
-.hero__scroll .line{ width:1px; height:34px; background:linear-gradient(var(--beige),transparent); animation:scrollpulse 2.2s var(--ease) infinite; transform-origin:top; }
-@keyframes scrollpulse{ 0%,100%{ transform:scaleY(.4); opacity:.4 } 50%{ transform:scaleY(1); opacity:1 } }
+
+.hero__photo{ position:relative; background:var(--cream); overflow:hidden; }
+@media (max-width:879px){ .hero__photo{ order:1; min-height:58vh; } }
+.hero__photo img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 14%; }
+.hero__photo::after{ content:""; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(90deg, var(--offwhite), rgba(245,240,232,0) 13%); }
+@media (max-width:879px){ .hero__photo::after{ background:linear-gradient(0deg, var(--offwhite), rgba(245,240,232,0) 12%); } }
 
 /* ===========================================================
    PARCEIROS
    =========================================================== */
-.partners{ padding-block:clamp(40px,6vw,64px); }
-.partners__label{ text-align:center; margin-bottom:1.7rem; }
+.partners{ padding-block:clamp(48px,7vw,84px); }
+.partners__label{ display:flex; justify-content:center; margin:0 0 clamp(30px,4.5vw,46px); }
 .partners__row{
   display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
-  gap:clamp(22px,6vw,72px);
+  gap:clamp(30px,6vw,76px);
 }
 .partner{
-  font-family:var(--sans); font-weight:600;
-  font-size:clamp(1.05rem,2.6vw,1.5rem);
-  letter-spacing:.04em; color:var(--brown-mid);
-  opacity:.78; transition:opacity .25s ease, color .25s ease;
+  display:inline-flex; align-items:center; gap:.55em;
+  color:var(--brown-mid); opacity:.82;
+  transition:opacity .25s ease, color .25s ease;
 }
 .partner:hover{ opacity:1; color:var(--brown-dark); }
-.partner span{ font-family:var(--serif); font-style:italic; font-weight:500; }
+.partner__mark{ width:clamp(22px,3.4vw,28px); height:auto; flex:0 0 auto; }
+.partner__wm{ font-family:var(--sans); font-weight:700; font-size:clamp(1.1rem,2.7vw,1.5rem); letter-spacing:-.012em; line-height:1; }
 
 /* ===========================================================
    GRID DE SEÇÃO COM FOTO (split)
@@ -286,6 +285,15 @@ h1,h2,h3{ margin:0; font-weight:500; }
 .media.r-4x5{ aspect-ratio:4/5; }
 .media.r-1x1{ aspect-ratio:1/1; }
 .media.r-2x3{ aspect-ratio:2/3; }
+/* preenche a altura da coluna (evita vão quando o texto é mais alto) */
+.split.stretch{ align-items:stretch; }
+.split.stretch .split__media{ display:flex; }
+.media.fill{ height:100%; width:100%; min-height:clamp(360px,46vw,560px); }
+/* coluna de foto que acompanha o texto longo (evita vão na história) */
+@media (min-width:880px){
+  .split.sticky-media{ align-items:start; }
+  .split.sticky-media .split__media{ position:sticky; top:104px; }
+}
 .framed{ box-shadow:var(--shadow-card); }
 .framed::after{ content:""; position:absolute; inset:0; border:1px solid rgba(196,168,130,.55); border-radius:var(--radius); pointer-events:none; }
 
@@ -336,6 +344,7 @@ h1,h2,h3{ margin:0; font-weight:500; }
 }
 .bg-cream .callout{ background:var(--white); }
 .callout p{ margin:0; font-family:var(--serif); font-style:italic; font-size:clamp(1.2rem,2.8vw,1.55rem); line-height:1.4; color:var(--brown-dark); }
+.callout--wide{ margin-top:clamp(44px,6vw,72px); }
 
 /* ===========================================================
    HISTÓRIA
@@ -344,6 +353,9 @@ h1,h2,h3{ margin:0; font-weight:500; }
 .story-body p{ margin:0 0 1.45rem; max-width:58ch; }
 .story-body strong{ color:var(--brown-dark); font-weight:600; }
 .signature{ font-family:var(--serif); font-style:italic; font-size:1.7rem; color:var(--brown-mid); margin-top:1.4rem; }
+/* revelação palavra por palavra ao rolar */
+.story-reveal .rw{ opacity:.16; will-change:opacity; }
+@media (prefers-reduced-motion:reduce){ .story-reveal .rw{ opacity:1 !important; } }
 
 /* ===========================================================
    O MÉTODO
@@ -381,13 +393,13 @@ h1,h2,h3{ margin:0; font-weight:500; }
 /* ===========================================================
    DIFERENCIAIS — tabela comparativa
    =========================================================== */
-.compare{ margin:0 auto; max-width:920px; border:1px solid var(--beige); border-radius:var(--radius); overflow:hidden; background:var(--white); }
+.compare{ margin:0 auto; max-width:960px; border:1px solid var(--beige); border-radius:var(--radius); overflow:hidden; background:var(--white); }
 .compare__head{ display:grid; grid-template-columns:1fr 1fr; }
-.compare__head > div{ padding:18px clamp(16px,3vw,28px); font-weight:600; font-size:.92rem; letter-spacing:.02em; }
+.compare__head > div{ padding:clamp(18px,2.4vw,24px) clamp(22px,3.4vw,40px); font-family:var(--sans); font-weight:600; font-size:clamp(.95rem,1.6vw,1.1rem); letter-spacing:.01em; }
 .compare__head .c-other{ color:var(--brown-mid); background:var(--offwhite); border-bottom:1px solid var(--cream); }
 .compare__head .c-ours{ color:var(--offwhite); background:var(--brown-dark); }
 .compare__row{ display:grid; grid-template-columns:1fr 1fr; border-top:1px solid var(--cream); }
-.compare__row > div{ padding:clamp(14px,2.6vw,22px) clamp(16px,3vw,28px); font-size:clamp(.95rem,2vw,1.05rem); line-height:1.45; }
+.compare__row > div{ padding:clamp(20px,2.8vw,30px) clamp(22px,3.4vw,40px); font-size:clamp(1rem,1.7vw,1.12rem); line-height:1.55; }
 .compare__row .c-other{ color:var(--brown-mid); }
 .compare__row .c-ours{ color:var(--brown-dark); font-weight:500; background:rgba(196,168,130,.10); position:relative; }
 .compare__row .c-ours::before{ content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--brown-mid); }
@@ -396,23 +408,23 @@ h1,h2,h3{ margin:0; font-weight:500; }
 /* ===========================================================
    PARA QUEM É
    =========================================================== */
-.fit-grid{ display:grid; gap:clamp(24px,3.4vw,40px); margin-top:0; grid-template-columns:1fr; }
-@media (min-width:820px){ .fit-grid{ grid-template-columns:1.25fr .9fr; align-items:start; } }
-.fit-cols{ display:grid; gap:clamp(20px,3vw,28px); }
-@media (min-width:560px){ .fit-cols{ grid-template-columns:1fr 1fr; } }
-.fit-card{ background:var(--white); border:1px solid var(--cream); border-radius:var(--radius); padding:clamp(28px,3.4vw,40px); box-shadow:var(--shadow-card); }
-.bg-cream .fit-card{ background:var(--white); }
-.fit-card h3{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:1.5rem; letter-spacing:0; margin-bottom:1.5rem; color:var(--brown-dark); }
-.fit-list{ list-style:none; margin:0; padding:0; display:grid; gap:1.2rem; }
-.fit-list li{ position:relative; padding-left:2rem; font-size:1rem; line-height:1.5; }
+.fit-two{ display:grid; grid-template-columns:1fr; max-width:1000px; margin:0 auto; border:1px solid var(--beige); border-radius:var(--radius); overflow:hidden; background:var(--white); }
+@media (min-width:720px){ .fit-two{ grid-template-columns:1fr 1fr; } }
+.fit-col{ padding:clamp(30px,3.6vw,48px); }
+.fit-col + .fit-col{ border-top:1px solid var(--cream); }
+@media (min-width:720px){ .fit-col + .fit-col{ border-top:0; border-left:1px solid var(--cream); } }
+.fit-col h3{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:clamp(1.4rem,2.4vw,1.7rem); letter-spacing:0; margin:0 0 1.6rem; color:var(--brown-dark); }
+.fit-col--no h3{ color:var(--brown-mid); }
+.fit-list{ list-style:none; margin:0; padding:0; display:grid; gap:1.25rem; }
+.fit-list li{ position:relative; padding-left:2.1rem; font-size:clamp(1rem,1.5vw,1.08rem); line-height:1.55; }
 .fit-list li svg{ position:absolute; left:0; top:.18em; }
-.fit-card.no h3{ color:var(--brown-mid); }
 
 /* ===========================================================
    BÔNUS
    =========================================================== */
 .bonus-grid{ display:grid; gap:clamp(20px,2.6vw,28px); grid-template-columns:1fr; }
 @media (min-width:760px){ .bonus-grid{ grid-template-columns:1fr 1fr; } }
+@media (min-width:760px){ .bonus-grid--stack{ grid-template-columns:1fr; } }
 .bonus-card{
   background:var(--cream); border-radius:var(--radius);
   padding:clamp(28px,4vw,40px);
@@ -518,33 +530,33 @@ h1,h2,h3{ margin:0; font-weight:500; }
 
 <!-- ============================= HEADER ============================= -->
 <header class="site-header" id="header">
-  <a href="#topo" class="logo" aria-label="Método Campanha Desejada — início">
-    <span class="logo__kicker">Método</span>
-    <span class="logo__name">Campanha Desejada</span>
-  </a>
-  <div class="header-cta">
-    <a href="#oferta" class="btn btn--outline btn--sm">Quero entrar</a>
+  <div class="container site-header__inner">
+    <a href="#topo" class="logo" aria-label="Método Campanha Desejada">
+      <span class="logo__kicker">Método</span>
+      <span class="logo__name">Campanha Desejada</span>
+    </a>
+    <div class="header-cta">
+      <a href="#oferta" class="btn btn--outline btn--sm">Quero entrar</a>
+    </div>
   </div>
 </header>
 
 <!-- ============================= HERO ============================= -->
 <section class="hero" id="topo">
-  <div class="hero__media">
-    <!-- Foto: Júlia em pé, corpo inteiro — rosto no topo, texto ancorado embaixo (substituível) -->
-    <img src="fotos/web/DSC09855.JPG" alt="Júlia Cardoso Aragão, fundadora da Flossie, em ensaio editorial" fetchpriority="high" />
-  </div>
-  <div class="hero__scrim"></div>
-  <div class="hero__content container">
+  <div class="hero__text">
     <div class="hero__inner">
       <p class="eyebrow">Por Júlia Cardoso Aragão</p>
       <h1 class="display">Suas peças são <em>lindas</em>. O problema é que ninguém está esperando por elas.</h1>
-      <p class="hero__sub">Aprenda a criar campanhas que geram desejo de verdade — sem depender de desconto, sem improvisar e sem torcer para dar certo.</p>
+      <p class="hero__sub">Aprenda a criar campanhas que geram desejo de verdade, sem depender de desconto, sem improvisar e sem torcer para dar certo.</p>
       <div class="hero__actions">
-        <a href="#oferta" class="btn btn--light">Quero criar campanhas que vendem <span class="arr">→</span></a>
+        <a href="#oferta" class="btn">Quero criar campanhas que vendem <span class="arr">→</span></a>
       </div>
     </div>
   </div>
-  <div class="hero__scroll" aria-hidden="true"><span class="line"></span><span>Role</span></div>
+  <div class="hero__photo">
+    <!-- Foto da Júlia (substituível) -->
+    <img src="fotos/web/DSC09855.JPG" alt="Júlia Cardoso Aragão, fundadora da Flossie, em ensaio editorial" fetchpriority="high" />
+  </div>
 </section>
 
 <!-- ============================= PARCEIROS ============================= -->
@@ -552,10 +564,22 @@ h1,h2,h3{ margin:0; font-weight:500; }
   <div class="container">
     <p class="eyebrow center partners__label reveal">Construído com parceiros que movem o e-commerce</p>
     <div class="partners__row">
-      <span class="partner reveal" style="--d:.04s">Nuvem<span>shop</span></span>
-      <span class="partner reveal" style="--d:.10s">App<span>max</span></span>
-      <span class="partner reveal" style="--d:.16s">O<span>list</span></span>
-      <span class="partner reveal" style="--d:.22s">Mi<span>zui</span></span>
+      <span class="partner reveal" style="--d:.04s" title="Nuvemshop">
+        <svg class="partner__mark" viewBox="0 0 28 24" fill="none" aria-hidden="true"><path d="M8 20.5a5 5 0 0 1-.7-9.95A6.5 6.5 0 0 1 20 11.2a4.2 4.2 0 0 1 .4 9.3z" fill="currentColor"/></svg>
+        <span class="partner__wm">nuvemshop</span>
+      </span>
+      <span class="partner reveal" style="--d:.10s" title="Appmax">
+        <svg class="partner__mark" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 19 11 5l3.6 6.3M13 19l3.4-6 4.6 8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="partner__wm">appmax</span>
+      </span>
+      <span class="partner reveal" style="--d:.16s" title="Olist">
+        <svg class="partner__mark" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.2" stroke="currentColor" stroke-width="2.6"/><circle cx="12" cy="12" r="2.6" fill="currentColor"/></svg>
+        <span class="partner__wm">olist</span>
+      </span>
+      <span class="partner reveal" style="--d:.22s" title="Mizui">
+        <svg class="partner__mark" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3s7 7.6 7 12a7 7 0 0 1-14 0c0-4.4 7-12 7-12z" fill="currentColor"/></svg>
+        <span class="partner__wm">mizui</span>
+      </span>
     </div>
   </div>
 </section>
@@ -563,28 +587,26 @@ h1,h2,h3{ margin:0; font-weight:500; }
 <!-- ============================= DOR ============================= -->
 <section class="section bg-cream" id="identificacao">
   <div class="container">
-    <div class="split img-right">
+    <div class="split img-right stretch">
       <div class="split__media reveal">
-        <div class="media-deco">
-          <div class="media r-4x5 framed">
-            <img src="fotos/web/DSC09827.JPG" loading="lazy" alt="Júlia sentada, expressão pensativa" />
-          </div>
+        <div class="media fill framed">
+          <img src="fotos/web/DSC09827.JPG" loading="lazy" alt="Júlia sentada, expressão pensativa" />
         </div>
       </div>
       <div class="split__text reveal" style="--d:.1s">
         <p class="eyebrow">A cena de todo lançamento</p>
         <h2 class="h2">Você reconhece <em>essa cena?</em></h2>
         <ul class="pain-list">
-          <li>Você lança uma coleção nova e as vendas ficam aquém do esperado — mesmo a peça sendo boa.</li>
+          <li>Você lança uma coleção nova e as vendas ficam aquém do esperado, mesmo a peça sendo boa.</li>
           <li>Fica olhando os stories com aquela sensação de “por que ninguém está comprando?”.</li>
           <li>Já tentou de tudo: post bonito, legenda caprichada, story com enquete… e nada.</li>
           <li>Toda vez que um lançamento não performa, parece que o problema é o preço.</li>
           <li>Você sabe que tem potencial, mas a sua operação não reflete isso no caixa.</li>
         </ul>
-        <div class="callout">
-          <p>Eu já estive exatamente aí. E descobri que o problema não era o produto — era a ausência de uma campanha com estrutura.</p>
-        </div>
       </div>
+    </div>
+    <div class="callout callout--wide reveal">
+      <p>Eu já estive exatamente aí. E descobri que o problema não era o produto. Era a ausência de uma campanha com estrutura.</p>
     </div>
   </div>
 </section>
@@ -592,7 +614,7 @@ h1,h2,h3{ margin:0; font-weight:500; }
 <!-- ============================= HISTÓRIA ============================= -->
 <section class="section bg-offwhite" id="historia">
   <div class="container">
-    <div class="split narrow-media">
+    <div class="split narrow-media sticky-media">
       <div class="split__media reveal">
         <div class="photo-duo">
           <div class="media main framed">
@@ -603,16 +625,16 @@ h1,h2,h3{ margin:0; font-weight:500; }
           </div>
         </div>
       </div>
-      <div class="split__text reveal" style="--d:.1s">
-        <p class="eyebrow">A história da Júlia</p>
-        <h2 class="h2">Como passei de lançamentos que davam prejuízo para uma marca que <em>gera desejo</em> antes mesmo de abrir o carrinho</h2>
-        <div class="story-body">
-          <p>No início da Flossie eu cometia um erro quase invisível — mas que aparecia direto no caixa.</p>
+      <div class="split__text">
+        <p class="eyebrow reveal">A história da Júlia</p>
+        <h2 class="h2 reveal" style="--d:.06s">Como passei de lançamentos que davam prejuízo para uma marca que <em>gera desejo</em> antes mesmo de abrir o carrinho</h2>
+        <div class="story-body story-reveal">
+          <p>No início da Flossie eu cometia um erro quase invisível, mas que aparecia direto no caixa.</p>
           <p>Meus lançamentos eram improvisados. Sem planejamento, sem estrutura, sem intenção. O resultado? Energia gasta, expectativa alta e retorno baixo.</p>
           <p>Depois de perder dinheiro, parei. Estudei. E desenhei uma estrutura simples que mudou tudo: aprendi a plantar desejo <strong>antes</strong> de abrir o carrinho.</p>
-          <p>Hoje, aos 22 anos, a Flossie não é mais só uma loja de roupas. É uma marca que cria experiência, que tem parceiros como Nuvemshop, Appmax, Olist e Mizui — e que mostra que dá pra crescer com intenção, não na sorte.</p>
+          <p>Hoje, aos 22 anos, a Flossie não é mais só uma loja de roupas. É uma marca que cria experiência, que tem parceiros como Nuvemshop, Appmax, Olist e Mizui, e que mostra que dá pra crescer com intenção, não na sorte.</p>
           <p>O que eu aprendi na prática é o que está dentro do <strong>Método Campanha Desejada</strong>.</p>
-          <p class="signature">— Júlia</p>
+          <p class="signature">Júlia</p>
         </div>
       </div>
     </div>
@@ -685,18 +707,11 @@ h1,h2,h3{ margin:0; font-weight:500; }
     <div class="section-head reveal">
       <p class="eyebrow center">Por que esse e não outro</p>
       <h2 class="h2">Não é só mais um curso de <em>e-commerce</em></h2>
-      <p class="lead">Existe curso que te dá o que fazer. O Método Campanha Desejada te explica <em>por que</em> funciona — e aí você nunca mais fica presa no improviso.</p>
+      <p class="lead">Existe curso que te dá o que fazer. O Método Campanha Desejada te explica <em>por que</em> funciona. E aí você nunca mais fica presa no improviso.</p>
     </div>
 
-    <div class="split narrow-media">
-      <div class="split__media reveal">
-        <div class="media r-4x5 framed">
-          <img src="fotos/web/DSC09906.JPG" loading="lazy" alt="Júlia em momento criativo, segurando a câmera" />
-        </div>
-      </div>
-      <div class="split__text reveal" style="--d:.1s">
-        <div class="compare">
-          <div class="compare__head">
+    <div class="compare reveal">
+      <div class="compare__head">
         <div class="c-other">Outros cursos</div>
         <div class="c-ours">Método Campanha Desejada</div>
       </div>
@@ -712,11 +727,9 @@ h1,h2,h3{ margin:0; font-weight:500; }
         <div class="c-other">O que fazer</div>
         <div class="c-ours">Por que fazer (e o que muda quando você entende)</div>
       </div>
-          <div class="compare__row">
-            <div class="c-other">Foco em organização</div>
-            <div class="c-ours">Foco em gerar desejo de verdade</div>
-          </div>
-        </div>
+      <div class="compare__row">
+        <div class="c-other">Foco em organização</div>
+        <div class="c-ours">Foco em gerar desejo de verdade</div>
       </div>
     </div>
   </div>
@@ -729,29 +742,22 @@ h1,h2,h3{ margin:0; font-weight:500; }
       <p class="eyebrow center">O fit certo</p>
       <h2 class="h2">Esse método é <em>pra você</em> se…</h2>
     </div>
-    <div class="fit-grid">
-      <div class="fit-cols">
-        <div class="fit-card reveal" style="--d:.06s">
-          <h3>É pra você se…</h3>
-          <ul class="fit-list">
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B2314" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Você tem uma loja (ou está montando) e seus lançamentos não performam como esperado.</li>
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B2314" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Você sente que as peças são boas mas o desejo não chega até a cliente.</li>
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B2314" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Você quer parar de improvisar e ter uma estrutura real de campanha.</li>
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B2314" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Você está cansada de achar que o problema é o preço.</li>
-          </ul>
-        </div>
-        <div class="fit-card no reveal" style="--d:.14s">
-          <h3>E não é pra você se…</h3>
-          <ul class="fit-list">
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C4A2D" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>Você ainda não tem uma loja ou produto definido.</li>
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C4A2D" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>Você quer uma fórmula mágica sem aplicar nada.</li>
-          </ul>
-        </div>
+    <div class="fit-two reveal">
+      <div class="fit-col">
+        <h3>É pra você se…</h3>
+        <ul class="fit-list">
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B2314" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Você tem uma loja (ou está montando) e seus lançamentos não performam como esperado.</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B2314" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Você sente que as peças são boas mas o desejo não chega até a cliente.</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B2314" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Você quer parar de improvisar e ter uma estrutura real de campanha.</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B2314" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Você está cansada de achar que o problema é o preço.</li>
+        </ul>
       </div>
-      <div class="split__media reveal" style="--d:.2s">
-        <div class="media r-3x4 framed">
-          <img src="fotos/web/DSC09824.JPG" loading="lazy" alt="Júlia em ensaio, clima editorial sereno" />
-        </div>
+      <div class="fit-col fit-col--no">
+        <h3>E não é pra você se…</h3>
+        <ul class="fit-list">
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C4A2D" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>Você ainda não tem uma loja ou produto definido.</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C4A2D" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>Você quer uma fórmula mágica sem aplicar nada.</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -764,14 +770,14 @@ h1,h2,h3{ margin:0; font-weight:500; }
       <p class="eyebrow center">Bônus exclusivo · primeiros dias</p>
       <h2 class="h2">Para quem entrar nos <em>primeiros dias</em></h2>
     </div>
-    <div class="split img-right" style="align-items:center;">
+    <div class="split img-right narrow-media stretch">
       <div class="split__media reveal">
-        <div class="media r-4x5 framed">
+        <div class="media fill framed">
           <img src="fotos/web/DSC09816.JPG" loading="lazy" alt="Júlia sorrindo ao lado do moodboard da marca" />
         </div>
       </div>
       <div class="split__text reveal" style="--d:.1s">
-        <div class="bonus-grid">
+        <div class="bonus-grid bonus-grid--stack">
           <article class="bonus-card">
             <span class="b-num">1</span>
             <span class="bonus-badge">Bônus 01</span>
@@ -816,7 +822,7 @@ h1,h2,h3{ margin:0; font-weight:500; }
         </div>
 
         <ul class="offer__includes">
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Curso completo em aulas gravadas — assista no seu tempo</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Curso completo em aulas gravadas, assista no seu tempo</li>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Acesso imediato após a confirmação do pagamento</li>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Bônus dos primeiros dias: Calendário + Artes de Campanhas</li>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>7 dias de garantia incondicional</li>
@@ -895,7 +901,7 @@ h1,h2,h3{ margin:0; font-weight:500; }
   <div class="closing__scrim"></div>
   <div class="closing__content container reveal">
     <h2 class="closing-title">Suas próximas clientes já estão lá. Elas só precisam que você crie o <em>desejo certo.</em></h2>
-    <p>Você não precisa de mais produto. Você precisa de uma campanha que chega antes do carrinho abrir — e que faz a sua cliente sentir que precisa estar lá. É isso que o Método Campanha Desejada entrega.</p>
+    <p>Você não precisa de mais produto. Você precisa de uma campanha que chega antes do carrinho abrir, e que faz a sua cliente sentir que precisa estar lá. É isso que o Método Campanha Desejada entrega.</p>
     <a href="#oferta" class="btn btn--light">Quero criar campanhas que vendem de verdade <span class="arr">→</span></a>
   </div>
 </section>
@@ -909,7 +915,7 @@ h1,h2,h3{ margin:0; font-weight:500; }
           <span class="logo__kicker">Método</span>
           <span class="logo__name">Campanha Desejada</span>
         </a>
-        <p class="footer__tag">Campanhas que geram desejo de forma previsível — por Júlia Cardoso Aragão, fundadora da Flossie.</p>
+        <p class="footer__tag">Campanhas que geram desejo de forma previsível, por Júlia Cardoso Aragão, fundadora da Flossie.</p>
       </div>
       <div>
         <p class="col-title">Navegação</p>
@@ -999,6 +1005,62 @@ h1,h2,h3{ margin:0; font-weight:500; }
     var openItem = document.querySelector('.faq-item.open .faq-a');
     if (openItem) openItem.style.maxHeight = openItem.scrollHeight + 'px';
   });
+
+  /* História: revelação palavra por palavra ao rolar */
+  (function(){
+    var container = document.querySelector('.story-reveal');
+    if (!container) return;
+    var words = [];
+    function wrap(node){
+      Array.prototype.slice.call(node.childNodes).forEach(function(child){
+        if (child.nodeType === 3){
+          var parts = child.textContent.split(/(\s+)/);
+          var frag = document.createDocumentFragment();
+          parts.forEach(function(part){
+            if (part.length === 0) return;
+            if (/^\s+$/.test(part)){ frag.appendChild(document.createTextNode(part)); return; }
+            var s = document.createElement('span');
+            s.className = 'rw';
+            s.textContent = part;
+            frag.appendChild(s);
+            words.push(s);
+          });
+          node.replaceChild(frag, child);
+        } else if (child.nodeType === 1 && !child.classList.contains('rw')){
+          wrap(child);
+        }
+      });
+    }
+    wrap(container);
+
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce){ words.forEach(function(w){ w.style.opacity = 1; }); return; }
+
+    var ys = [];
+    function update(){
+      var vh = window.innerHeight;
+      var start = vh * 0.82;   // abaixo da linha: apagado
+      var end = vh * 0.45;     // acima da linha: revelado
+      var range = start - end;
+      var i;
+      // passo de leitura (evita layout thrash)
+      for (i = 0; i < words.length; i++){
+        var r = words[i].getBoundingClientRect();
+        ys[i] = r.top + r.height / 2;
+      }
+      // passo de escrita
+      for (i = 0; i < words.length; i++){
+        var y = ys[i], o;
+        if (y >= start) o = 0.16;
+        else if (y <= end) o = 1;
+        else o = 0.16 + 0.84 * (start - y) / range;
+        words[i].style.opacity = o.toFixed(3);
+      }
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
 
   /* CTA de checkout — integrar com a plataforma de pagamento [A DEFINIR] */
   document.querySelectorAll('[data-cta="checkout"]').forEach(function(el){
