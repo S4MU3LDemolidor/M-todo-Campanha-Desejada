@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Método Campanha Desejada · Julia Cardoso Aragão</title>
+<meta name="description" content="Aprenda a criar campanhas que geram desejo de verdade — sem depender de desconto, sem improvisar e sem torcer para dar certo. O Método Campanha Desejada, por Julia Cardoso Aragão." />
+
+<!-- Open Graph / compartilhamento (substituir og:image pela arte 1200x630 definitiva) -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Método Campanha Desejada · Julia Cardoso Aragão" />
+<meta property="og:description" content="Campanhas que geram desejo de forma previsível — sem que o preço se torne uma objeção." />
+<meta property="og:image" content="fotos/web/DSC09861.JPG" />
+<meta property="og:locale" content="pt_BR" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+
+<!--
+  ============================================================
+  Método Campanha Desejada — Página de vendas
+  Júlia Cardoso Aragão
+  HTML + CSS + JS puros · mobile-first · sem frameworks
+  ------------------------------------------------------------
+  PENDÊNCIAS (marcadas como [A DEFINIR] na página):
+   · Preço final + parcelamento
+   · Plataforma de hospedagem do curso
+   · Estrutura real dos módulos
+  Fotos: pasta /fotos (recomenda-se converter para WebP antes do go-live)
+  ============================================================
+-->
+
+<style>
+/* ===========================================================
+   TOKENS — paleta e tipografia (design.md)
+   =========================================================== */
+:root{
+  /* Cores primárias */
+  --brown-dark:   #3B2314;  /* títulos, CTA, destaques */
+  --brown-mid:    #7C4A2D;  /* subtítulos, ícones, detalhes */
+  --offwhite:     #F5F0E8;  /* background principal */
+  --cream:        #EDE5D8;  /* seções alternadas, cards */
+  /* Cores de apoio */
+  --white:        #FFFFFF;
+  --beige:        #C4A882;  /* bordas, separadores, detalhes */
+  --brown-darkest:#1E110A;  /* texto corrido / hover */
+
+  --ink: var(--brown-darkest);
+
+  --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --sans:  "DM Sans", system-ui, -apple-system, sans-serif;
+
+  /* Ritmo */
+  --section-pad: clamp(100px, 14vw, 176px);
+  --gutter: clamp(24px, 5.5vw, 88px);
+  --maxw: 1120px;
+
+  --radius: 4px;
+  --radius-btn: 2px;
+  --shadow-card: 0 2px 12px rgba(59,35,20,.06);
+  --shadow-card-h: 0 14px 40px rgba(59,35,20,.14);
+  --ease: cubic-bezier(.2,.65,.2,1);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{
+  margin:0;
+  background:var(--offwhite);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.8;
+  font-weight:400;
+  letter-spacing:.005em;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+@media (max-width:600px){ body{ font-size:16px; } }
+
+img{ display:block; max-width:100%; }
+a{ color:inherit; text-decoration:none; }
+
+/* Textura de grão sutil — clima editorial / papel quente */
+body::before{
+  content:"";
+  position:fixed; inset:0;
+  pointer-events:none;
+  z-index:9;
+  opacity:.035;
+  mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ===========================================================
+   LAYOUT
+   =========================================================== */
+.container{ width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline:var(--gutter); }
+.section{ padding-block:var(--section-pad); position:relative; }
+.bg-offwhite{ background:var(--offwhite); }
+.bg-cream{ background:var(--cream); }
+.bg-gradient{ background:linear-gradient(180deg,var(--offwhite),var(--cream)); }
+.bg-dark{ background:var(--brown-dark); color:var(--offwhite); }
+
+/* ===========================================================
+   TIPOGRAFIA / HELPERS
+   =========================================================== */
+.eyebrow{
+  font-family:var(--sans);
+  font-weight:600;
+  font-size:.72rem;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--brown-mid);
+  margin:0 0 1.6rem;
+  display:inline-flex; align-items:center; gap:.7em;
+}
+.eyebrow::before{ content:""; width:26px; height:1px; background:var(--beige); display:inline-block; }
+.eyebrow.center{ justify-content:center; }
+.eyebrow.center::after{ content:""; width:26px; height:1px; background:var(--beige); display:inline-block; }
+.eyebrow.on-dark{ color:var(--beige); }
+.eyebrow.on-dark::before,.eyebrow.on-dark::after{ background:rgba(196,168,130,.6); }
+
+h1,h2,h3{ margin:0; font-weight:500; }
+
+.display{
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(2.5rem,7.2vw,5rem);
+  line-height:1.04;
+  letter-spacing:-.01em;
+  color:var(--brown-dark);
+}
+/* Títulos de seção: serif consistente (sem troca de família no meio da linha) */
+.h2{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:clamp(2.15rem,4.8vw,3.4rem);
+  line-height:1.1;
+  letter-spacing:-.005em;
+  color:var(--brown-dark);
+}
+/* palavra de destaque: itálico da MESMA família serif — harmônico */
+.h2 em, .display em, .closing-title em{
+  font-style:italic;
+  font-weight:500;
+}
+.lead{ font-size:clamp(1.08rem,2.3vw,1.32rem); line-height:1.7; color:var(--brown-mid); }
+.muted{ color:var(--brown-mid); }
+.serif-i{ font-family:var(--serif); font-style:italic; }
+
+.rule{ width:100%; height:1px; background:var(--beige); border:0; opacity:.7; }
+
+/* Cabeçalho de seção centralizado */
+.section-head{ max-width:760px; margin:0 auto clamp(52px,7vw,84px); text-align:center; }
+.section-head .eyebrow{ justify-content:center; }
+.section-head .eyebrow::after{ content:""; width:26px; height:1px; background:var(--beige); display:inline-block; }
+.section-head .lead{ margin:1.4rem auto 0; max-width:60ch; }
+
+/* selo de pendência [A DEFINIR] */
+.todo{
+  display:inline-block;
+  font-family:var(--sans);
+  font-weight:600;
+  font-size:.7rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--brown-mid);
+  border:1px dashed var(--beige);
+  background:rgba(196,168,130,.10);
+  padding:4px 10px;
+  border-radius:2px;
+  white-space:nowrap;
+}
+.todo.lg{ font-size:.95rem; padding:8px 16px; letter-spacing:.12em; }
+.on-dark .todo{ color:var(--offwhite); border-color:rgba(245,240,232,.5); background:rgba(245,240,232,.08); }
+
+/* ===========================================================
+   BOTÕES
+   =========================================================== */
+.btn{
+  --bg:var(--brown-dark); --fg:var(--offwhite);
+  display:inline-flex; align-items:center; justify-content:center; gap:.6em;
+  background:var(--bg); color:var(--fg);
+  font-family:var(--sans); font-weight:600; font-size:.95rem; letter-spacing:.01em;
+  padding:18px 38px;
+  border:1.5px solid var(--bg);
+  border-radius:var(--radius-btn);
+  cursor:pointer;
+  transition:background .22s ease, color .22s ease, border-color .22s ease, transform .22s ease;
+  text-align:center; line-height:1.2;
+}
+.btn .arr{ transition:transform .22s var(--ease); }
+.btn:hover{ background:var(--brown-darkest); border-color:var(--brown-darkest); transform:translateY(-1px); }
+.btn:hover .arr{ transform:translateX(4px); }
+.btn--outline{ --bg:transparent; color:var(--brown-dark); border-color:var(--brown-dark); }
+.btn--outline:hover{ background:var(--brown-dark); color:var(--offwhite); border-color:var(--brown-dark); }
+.btn--light{ --bg:var(--offwhite); color:var(--brown-dark); border-color:var(--offwhite); }
+.btn--light:hover{ background:var(--white); border-color:var(--white); color:var(--brown-darkest); }
+.btn--sm{ padding:11px 22px; font-size:.82rem; }
+.btn--block{ width:100%; }
+
+/* ===========================================================
+   HEADER
+   =========================================================== */
+.site-header{
+  position:fixed; inset:0 0 auto 0; z-index:50;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px var(--gutter);
+  transition:background .35s ease, box-shadow .35s ease, padding .35s ease, color .35s ease;
+  color:var(--offwhite);
+}
+.site-header.scrolled{
+  background:rgba(245,240,232,.92);
+  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+  box-shadow:0 1px 0 rgba(196,168,130,.4);
+  color:var(--brown-dark);
+  padding-block:12px;
+}
+.logo{ display:inline-flex; flex-direction:column; line-height:1; gap:3px; }
+.logo__kicker{ font-family:var(--sans); font-weight:600; font-size:.6rem; letter-spacing:.34em; text-transform:uppercase; opacity:.85; }
+.logo__name{ font-family:var(--serif); font-style:italic; font-weight:500; font-size:1.4rem; letter-spacing:.01em; }
+.site-header .btn{ box-shadow:none; }
+.site-header:not(.scrolled) .btn--outline{ color:var(--offwhite); border-color:rgba(245,240,232,.7); }
+.site-header:not(.scrolled) .btn--outline:hover{ background:var(--offwhite); color:var(--brown-dark); }
+@media (max-width:560px){ .site-header .header-cta{ display:none; } }
+
+/* ===========================================================
+   HERO
+   =========================================================== */
+.hero{ position:relative; min-height:100svh; display:flex; align-items:flex-end; overflow:hidden; background:var(--cream); }
+.hero__media{ position:absolute; inset:0; }
+.hero__media img{ width:100%; height:100%; object-fit:cover; object-position:50% 16%; }
+@media (min-width:900px){ .hero__media img{ object-position:62% 18%; } }
+.hero__scrim{
+  position:absolute; inset:0;
+  background:
+    linear-gradient(180deg, rgba(30,17,10,.38) 0%, rgba(30,17,10,0) 20%, rgba(30,17,10,0) 40%, rgba(30,17,10,.55) 68%, rgba(30,17,10,.9) 100%),
+    linear-gradient(90deg, rgba(30,17,10,.55) 0%, rgba(30,17,10,.12) 50%, rgba(30,17,10,0) 80%);
+}
+.hero__content{ position:relative; z-index:2; color:var(--offwhite); padding-block:140px clamp(64px,11vh,120px); text-shadow:0 1px 30px rgba(30,17,10,.5); }
+.hero__inner{ max-width:560px; }
+.hero .eyebrow{ color:#EFE0C9; text-shadow:0 1px 14px rgba(30,17,10,.7); max-width:30ch; }
+.hero .eyebrow::before{ background:rgba(239,224,201,.85); }
+.hero__content h1{ color:#fff; max-width:15ch; font-size:clamp(2.3rem,5.6vw,4.3rem); line-height:1.07; }
+.hero__content h1 em{ font-style:italic; font-weight:500; }
+.hero__sub{ font-size:clamp(1.06rem,2.1vw,1.3rem); line-height:1.62; color:rgba(245,240,232,.94); max-width:42ch; margin:1.8rem 0 2.6rem; }
+.hero__actions{ display:flex; flex-wrap:wrap; gap:14px; align-items:center; }
+.hero__scroll{ position:absolute; left:50%; bottom:22px; transform:translateX(-50%); z-index:2; color:rgba(245,240,232,.7); font-size:.66rem; letter-spacing:.25em; text-transform:uppercase; display:flex; flex-direction:column; align-items:center; gap:8px; }
+.hero__scroll .line{ width:1px; height:34px; background:linear-gradient(var(--beige),transparent); animation:scrollpulse 2.2s var(--ease) infinite; transform-origin:top; }
+@keyframes scrollpulse{ 0%,100%{ transform:scaleY(.4); opacity:.4 } 50%{ transform:scaleY(1); opacity:1 } }
+
+/* ===========================================================
+   PARCEIROS
+   =========================================================== */
+.partners{ padding-block:clamp(40px,6vw,64px); }
+.partners__label{ text-align:center; margin-bottom:1.7rem; }
+.partners__row{
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
+  gap:clamp(22px,6vw,72px);
+}
+.partner{
+  font-family:var(--sans); font-weight:600;
+  font-size:clamp(1.05rem,2.6vw,1.5rem);
+  letter-spacing:.04em; color:var(--brown-mid);
+  opacity:.78; transition:opacity .25s ease, color .25s ease;
+}
+.partner:hover{ opacity:1; color:var(--brown-dark); }
+.partner span{ font-family:var(--serif); font-style:italic; font-weight:500; }
+
+/* ===========================================================
+   GRID DE SEÇÃO COM FOTO (split)
+   =========================================================== */
+.split{ display:grid; gap:clamp(40px,6vw,96px); align-items:center; }
+@media (min-width:880px){
+  .split{ grid-template-columns:1fr 1fr; }
+  .split.img-right .split__text{ order:1; } .split.img-right .split__media{ order:2; }
+  .split.narrow-media{ grid-template-columns:1.15fr .85fr; }
+}
+.split__media{ position:relative; }
+.media{ position:relative; overflow:hidden; border-radius:var(--radius); background:var(--cream); }
+.media img{ width:100%; height:100%; object-fit:cover; display:block; }
+.media.r-3x4{ aspect-ratio:3/4; }
+.media.r-4x5{ aspect-ratio:4/5; }
+.media.r-1x1{ aspect-ratio:1/1; }
+.media.r-2x3{ aspect-ratio:2/3; }
+.framed{ box-shadow:var(--shadow-card); }
+.framed::after{ content:""; position:absolute; inset:0; border:1px solid rgba(196,168,130,.55); border-radius:var(--radius); pointer-events:none; }
+
+/* moldura decorativa deslocada */
+.media-deco{ position:relative; }
+.media-deco::before{
+  content:""; position:absolute; inset:0;
+  transform:translate(16px,16px);
+  border:1px solid var(--beige);
+  border-radius:var(--radius);
+  z-index:0;
+}
+.media-deco .media{ position:relative; z-index:1; }
+
+/* duo de fotos (história) */
+.photo-duo{ position:relative; }
+.photo-duo .media.main{ aspect-ratio:4/5; }
+.photo-duo .media.inset{
+  position:absolute; width:46%; aspect-ratio:3/4; right:-6%; bottom:-9%;
+  border:6px solid var(--offwhite); border-radius:var(--radius);
+  box-shadow:var(--shadow-card-h);
+}
+@media (max-width:560px){
+  .photo-duo .media.inset{ width:42%; right:-2%; bottom:-7%; border-width:4px; }
+}
+
+.kicker-list{ list-style:none; margin:0; padding:0; }
+
+/* ===========================================================
+   DOR
+   =========================================================== */
+.pain-list{ list-style:none; margin:2.2rem 0 0; padding:0; display:grid; gap:1.4rem; }
+.pain-list li{
+  position:relative; padding-left:2.2rem;
+  font-size:clamp(1.02rem,2.1vw,1.14rem); line-height:1.6; color:var(--ink);
+}
+.pain-list li::before{
+  content:""; position:absolute; left:0; top:.62em;
+  width:9px; height:9px; transform:rotate(45deg);
+  border:1.5px solid var(--brown-mid);
+}
+.callout{
+  margin-top:2.8rem;
+  background:var(--cream);
+  border-left:3px solid var(--brown-mid);
+  border-radius:0 var(--radius) var(--radius) 0;
+  padding:clamp(26px,4vw,38px);
+}
+.bg-cream .callout{ background:var(--white); }
+.callout p{ margin:0; font-family:var(--serif); font-style:italic; font-size:clamp(1.2rem,2.8vw,1.55rem); line-height:1.4; color:var(--brown-dark); }
+
+/* ===========================================================
+   HISTÓRIA
+   =========================================================== */
+.story-body{ margin-top:2rem; }
+.story-body p{ margin:0 0 1.45rem; max-width:58ch; }
+.story-body strong{ color:var(--brown-dark); font-weight:600; }
+.signature{ font-family:var(--serif); font-style:italic; font-size:1.7rem; color:var(--brown-mid); margin-top:1.4rem; }
+
+/* ===========================================================
+   O MÉTODO
+   =========================================================== */
+.modules{ display:grid; gap:clamp(18px,2.4vw,28px); margin-top:0; grid-template-columns:1fr; }
+@media (min-width:620px){ .modules{ grid-template-columns:repeat(2,1fr); } }
+@media (min-width:980px){ .modules{ grid-template-columns:repeat(3,1fr); } }
+.module-card{
+  background:var(--white);
+  border:1px solid var(--cream);
+  border-radius:var(--radius);
+  padding:clamp(28px,3.4vw,40px);
+  box-shadow:var(--shadow-card);
+  transition:box-shadow .3s ease, transform .3s ease, border-color .3s ease;
+  display:flex; flex-direction:column; gap:1rem; min-height:220px;
+}
+.module-card:hover{ box-shadow:var(--shadow-card-h); transform:translateY(-3px); border-color:var(--beige); }
+.module-num{ font-family:var(--sans); font-weight:600; font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:var(--brown-mid); }
+.module-card h3{ font-family:var(--serif); font-weight:600; font-size:1.5rem; color:var(--brown-dark); line-height:1.15; }
+.module-card .module-desc{ color:var(--brown-mid); font-size:.98rem; line-height:1.6; }
+.module-card.is-todo{ background:repeating-linear-gradient(135deg,var(--white),var(--white) 12px,#faf7f1 12px,#faf7f1 24px); border-style:dashed; border-color:var(--beige); }
+
+.format-strip{
+  margin-top:clamp(48px,6vw,72px);
+  display:grid; gap:24px; grid-template-columns:1fr;
+  background:var(--brown-dark); color:var(--offwhite);
+  border-radius:var(--radius); padding:clamp(30px,4vw,48px);
+}
+@media (min-width:760px){ .format-strip{ grid-template-columns:repeat(3,1fr); } }
+.format-item{ display:flex; gap:14px; align-items:flex-start; }
+.format-item .ico{ flex:0 0 auto; color:var(--beige); margin-top:2px; }
+.format-item h4{ margin:0 0 3px; font-family:var(--sans); font-weight:600; font-size:1rem; letter-spacing:.01em; color:#fff; }
+.format-item p{ margin:0; font-size:.92rem; line-height:1.5; color:rgba(245,240,232,.78); }
+
+/* ===========================================================
+   DIFERENCIAIS — tabela comparativa
+   =========================================================== */
+.compare{ margin:0 auto; max-width:920px; border:1px solid var(--beige); border-radius:var(--radius); overflow:hidden; background:var(--white); }
+.compare__head{ display:grid; grid-template-columns:1fr 1fr; }
+.compare__head > div{ padding:18px clamp(16px,3vw,28px); font-weight:600; font-size:.92rem; letter-spacing:.02em; }
+.compare__head .c-other{ color:var(--brown-mid); background:var(--offwhite); border-bottom:1px solid var(--cream); }
+.compare__head .c-ours{ color:var(--offwhite); background:var(--brown-dark); }
+.compare__row{ display:grid; grid-template-columns:1fr 1fr; border-top:1px solid var(--cream); }
+.compare__row > div{ padding:clamp(14px,2.6vw,22px) clamp(16px,3vw,28px); font-size:clamp(.95rem,2vw,1.05rem); line-height:1.45; }
+.compare__row .c-other{ color:var(--brown-mid); }
+.compare__row .c-ours{ color:var(--brown-dark); font-weight:500; background:rgba(196,168,130,.10); position:relative; }
+.compare__row .c-ours::before{ content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--brown-mid); }
+.compare__head .c-ours{ position:relative; }
+
+/* ===========================================================
+   PARA QUEM É
+   =========================================================== */
+.fit-grid{ display:grid; gap:clamp(24px,3.4vw,40px); margin-top:0; grid-template-columns:1fr; }
+@media (min-width:820px){ .fit-grid{ grid-template-columns:1.25fr .9fr; align-items:start; } }
+.fit-cols{ display:grid; gap:clamp(20px,3vw,28px); }
+@media (min-width:560px){ .fit-cols{ grid-template-columns:1fr 1fr; } }
+.fit-card{ background:var(--white); border:1px solid var(--cream); border-radius:var(--radius); padding:clamp(28px,3.4vw,40px); box-shadow:var(--shadow-card); }
+.bg-cream .fit-card{ background:var(--white); }
+.fit-card h3{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:1.5rem; letter-spacing:0; margin-bottom:1.5rem; color:var(--brown-dark); }
+.fit-list{ list-style:none; margin:0; padding:0; display:grid; gap:1.2rem; }
+.fit-list li{ position:relative; padding-left:2rem; font-size:1rem; line-height:1.5; }
+.fit-list li svg{ position:absolute; left:0; top:.18em; }
+.fit-card.no h3{ color:var(--brown-mid); }
+
+/* ===========================================================
+   BÔNUS
+   =========================================================== */
+.bonus-grid{ display:grid; gap:clamp(20px,2.6vw,28px); grid-template-columns:1fr; }
+@media (min-width:760px){ .bonus-grid{ grid-template-columns:1fr 1fr; } }
+.bonus-card{
+  background:var(--cream); border-radius:var(--radius);
+  padding:clamp(28px,4vw,40px);
+  position:relative; overflow:hidden;
+  display:flex; flex-direction:column; gap:.9rem;
+}
+.bg-cream .bonus-card{ background:var(--white); border:1px solid var(--cream); }
+.bonus-badge{ align-self:flex-start; font-family:var(--sans); font-weight:600; font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--offwhite); background:var(--brown-mid); padding:5px 12px; border-radius:2px; }
+.bonus-card .b-num{ font-family:var(--serif); font-style:italic; font-size:3.2rem; line-height:.8; color:var(--beige); position:absolute; right:18px; top:14px; opacity:.6; }
+.bonus-card h3{ font-family:var(--serif); font-weight:600; font-size:clamp(1.4rem,3vw,1.8rem); color:var(--brown-dark); }
+.bonus-card p{ margin:0; color:var(--brown-mid); }
+.bonus-note{ margin-top:clamp(40px,6vw,64px); font-style:italic; font-family:var(--serif); font-size:1.22rem; line-height:1.6; color:var(--brown-mid); text-align:center; max-width:56ch; margin-inline:auto; }
+
+/* ===========================================================
+   PREÇO + CTA (bloco dark)
+   =========================================================== */
+.offer{ display:grid; gap:clamp(36px,6vw,64px); align-items:center; grid-template-columns:1fr; }
+@media (min-width:920px){ .offer{ grid-template-columns:1.05fr .95fr; } }
+.offer__media .media{ aspect-ratio:4/5; }
+.offer__media .media::after{ content:""; position:absolute; inset:0; border:1px solid rgba(196,168,130,.4); border-radius:var(--radius); }
+.offer h2{ color:#fff; }
+.price-wrap{ margin:1.8rem 0; display:flex; flex-direction:column; gap:.4rem; }
+.price-from{ font-size:.85rem; letter-spacing:.18em; text-transform:uppercase; color:var(--beige); }
+.price-row{ display:flex; align-items:baseline; gap:.5rem; flex-wrap:wrap; }
+.price-cur{ font-family:var(--serif); font-size:2rem; color:var(--offwhite); }
+.price-val{ font-family:var(--serif); font-weight:600; font-size:clamp(3.4rem,9vw,4.6rem); line-height:.9; color:#fff; }
+.price-parc{ margin-top:.4rem; color:rgba(245,240,232,.78); font-size:.98rem; display:flex; align-items:center; gap:.6rem; flex-wrap:wrap; }
+.offer__includes{ list-style:none; margin:1.8rem 0 2.4rem; padding:0; display:grid; gap:1rem; }
+.offer__includes li{ position:relative; padding-left:1.9rem; color:rgba(245,240,232,.9); font-size:.98rem; }
+.offer__includes li svg{ position:absolute; left:0; top:.2em; color:var(--beige); }
+
+/* ===========================================================
+   GARANTIA
+   =========================================================== */
+.guarantee{ display:flex; gap:clamp(22px,4vw,40px); align-items:center; justify-content:center; flex-direction:column; text-align:center; max-width:700px; margin-inline:auto; }
+@media (min-width:680px){ .guarantee{ flex-direction:row; text-align:left; } }
+.guarantee__shield{ flex:0 0 auto; width:84px; height:84px; color:var(--brown-mid); }
+.guarantee h3{ font-family:var(--serif); font-weight:600; font-size:clamp(1.5rem,3.4vw,2rem); color:var(--brown-dark); margin-bottom:.5rem; }
+.guarantee p{ margin:0; color:var(--brown-mid); font-size:1.05rem; }
+
+/* ===========================================================
+   FAQ
+   =========================================================== */
+.faq-layout{ display:grid; gap:clamp(32px,5vw,56px); align-items:start; grid-template-columns:1fr; }
+@media (min-width:920px){ .faq-layout{ grid-template-columns:.8fr 1.2fr; } }
+.faq-media .media{ aspect-ratio:3/4; position:sticky; top:96px; }
+.faq{ border-top:1px solid var(--beige); }
+.faq-item{ border-bottom:1px solid var(--beige); }
+.faq-q{
+  width:100%; background:none; border:0; cursor:pointer;
+  display:flex; align-items:center; justify-content:space-between; gap:20px;
+  padding:clamp(20px,3vw,26px) 4px; text-align:left;
+  font-family:var(--sans); font-weight:600; font-size:clamp(1.02rem,2.3vw,1.18rem); color:var(--brown-dark);
+  transition:color .2s ease;
+}
+.faq-q:hover{ color:var(--brown-mid); }
+.faq-icon{ flex:0 0 auto; position:relative; width:20px; height:20px; }
+.faq-icon::before,.faq-icon::after{ content:""; position:absolute; background:var(--brown-mid); transition:transform .3s var(--ease), opacity .3s ease; }
+.faq-icon::before{ left:0; right:0; top:9px; height:2px; }
+.faq-icon::after{ top:0; bottom:0; left:9px; width:2px; }
+.faq-item.open .faq-icon::after{ transform:scaleY(0); opacity:0; }
+.faq-a{ overflow:hidden; max-height:0; transition:max-height .4s var(--ease); }
+.faq-a__inner{ padding:0 4px clamp(22px,3vw,28px); color:var(--brown-mid); font-size:1.02rem; line-height:1.7; max-width:62ch; }
+
+/* ===========================================================
+   FECHAMENTO (full-bleed)
+   =========================================================== */
+.closing{ position:relative; min-height:96svh; display:flex; align-items:flex-end; overflow:hidden; background:var(--brown-dark); }
+.closing__media{ position:absolute; inset:0; }
+.closing__media img{ width:100%; height:100%; object-fit:cover; object-position:58% 16%; }
+.closing__scrim{ position:absolute; inset:0; background:linear-gradient(180deg,rgba(30,17,10,.30) 0%,rgba(30,17,10,0) 24%,rgba(30,17,10,.5) 64%,rgba(30,17,10,.9) 100%); }
+.closing__content{ position:relative; z-index:2; color:var(--offwhite); text-align:center; max-width:820px; margin-inline:auto; padding-block:0 clamp(72px,12vh,128px); text-shadow:0 1px 30px rgba(30,17,10,.5); }
+.closing-title{ font-family:var(--serif); font-weight:500; font-size:clamp(2.3rem,6vw,4.2rem); line-height:1.08; color:#fff; }
+.closing__content p{ font-size:clamp(1.06rem,2.2vw,1.28rem); line-height:1.62; color:rgba(245,240,232,.92); margin:1.8rem auto 2.6rem; max-width:54ch; }
+
+/* ===========================================================
+   FOOTER
+   =========================================================== */
+.footer{ background:var(--brown-darkest); color:rgba(245,240,232,.72); padding-block:clamp(48px,7vw,72px); }
+.footer__top{ display:flex; flex-wrap:wrap; gap:32px; justify-content:space-between; align-items:flex-start; }
+.footer .logo__name{ color:var(--offwhite); }
+.footer .logo__kicker{ color:var(--beige); }
+.footer__tag{ margin-top:.9rem; max-width:34ch; font-size:.95rem; line-height:1.6; }
+.footer__links{ display:flex; flex-direction:column; gap:.7rem; }
+.footer__links a{ color:rgba(245,240,232,.72); font-size:.95rem; transition:color .2s ease; width:fit-content; }
+.footer__links a:hover{ color:var(--offwhite); text-decoration:underline; text-underline-offset:3px; }
+.footer__bottom{ margin-top:clamp(32px,5vw,48px); padding-top:24px; border-top:1px solid rgba(196,168,130,.25); display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; font-size:.82rem; letter-spacing:.02em; }
+.footer__bottom .col-title{ color:var(--beige); font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; margin-bottom:.9rem; }
+
+/* ===========================================================
+   REVEAL (scroll fade-in)
+   =========================================================== */
+.reveal{ opacity:0; transform:translateY(26px); transition:opacity .8s var(--ease), transform .8s var(--ease); transition-delay:var(--d,0s); }
+.reveal.is-visible{ opacity:1; transform:none; }
+@media (prefers-reduced-motion:reduce){
+  *{ animation:none !important; }
+  .reveal{ opacity:1; transform:none; transition:none; }
+  html{ scroll-behavior:auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================= HEADER ============================= -->
+<header class="site-header" id="header">
+  <a href="#topo" class="logo" aria-label="Método Campanha Desejada — início">
+    <span class="logo__kicker">Método</span>
+    <span class="logo__name">Campanha Desejada</span>
+  </a>
+  <div class="header-cta">
+    <a href="#oferta" class="btn btn--outline btn--sm">Quero entrar</a>
+  </div>
+</header>
+
+<!-- ============================= HERO ============================= -->
+<section class="hero" id="topo">
+  <div class="hero__media">
+    <!-- Foto: Júlia em pé, corpo inteiro — rosto no topo, texto ancorado embaixo (substituível) -->
+    <img src="fotos/web/DSC09855.JPG" alt="Júlia Cardoso Aragão, fundadora da Flossie, em ensaio editorial" fetchpriority="high" />
+  </div>
+  <div class="hero__scrim"></div>
+  <div class="hero__content container">
+    <div class="hero__inner">
+      <p class="eyebrow">Por Júlia Cardoso Aragão</p>
+      <h1 class="display">Suas peças são <em>lindas</em>. O problema é que ninguém está esperando por elas.</h1>
+      <p class="hero__sub">Aprenda a criar campanhas que geram desejo de verdade — sem depender de desconto, sem improvisar e sem torcer para dar certo.</p>
+      <div class="hero__actions">
+        <a href="#oferta" class="btn btn--light">Quero criar campanhas que vendem <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+  <div class="hero__scroll" aria-hidden="true"><span class="line"></span><span>Role</span></div>
+</section>
+
+<!-- ============================= PARCEIROS ============================= -->
+<section class="section partners bg-offwhite" aria-label="Parceiros">
+  <div class="container">
+    <p class="eyebrow center partners__label reveal">Construído com parceiros que movem o e-commerce</p>
+    <div class="partners__row">
+      <span class="partner reveal" style="--d:.04s">Nuvem<span>shop</span></span>
+      <span class="partner reveal" style="--d:.10s">App<span>max</span></span>
+      <span class="partner reveal" style="--d:.16s">O<span>list</span></span>
+      <span class="partner reveal" style="--d:.22s">Mi<span>zui</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= DOR ============================= -->
+<section class="section bg-cream" id="identificacao">
+  <div class="container">
+    <div class="split img-right">
+      <div class="split__media reveal">
+        <div class="media-deco">
+          <div class="media r-4x5 framed">
+            <img src="fotos/web/DSC09827.JPG" loading="lazy" alt="Júlia sentada, expressão pensativa" />
+          </div>
+        </div>
+      </div>
+      <div class="split__text reveal" style="--d:.1s">
+        <p class="eyebrow">A cena de todo lançamento</p>
+        <h2 class="h2">Você reconhece <em>essa cena?</em></h2>
+        <ul class="pain-list">
+          <li>Você lança uma coleção nova e as vendas ficam aquém do esperado — mesmo a peça sendo boa.</li>
+          <li>Fica olhando os stories com aquela sensação de “por que ninguém está comprando?”.</li>
+          <li>Já tentou de tudo: post bonito, legenda caprichada, story com enquete… e nada.</li>
+          <li>Toda vez que um lançamento não performa, parece que o problema é o preço.</li>
+          <li>Você sabe que tem potencial, mas a sua operação não reflete isso no caixa.</li>
+        </ul>
+        <div class="callout">
+          <p>Eu já estive exatamente aí. E descobri que o problema não era o produto — era a ausência de uma campanha com estrutura.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= HISTÓRIA ============================= -->
+<section class="section bg-offwhite" id="historia">
+  <div class="container">
+    <div class="split narrow-media">
+      <div class="split__media reveal">
+        <div class="photo-duo">
+          <div class="media main framed">
+            <img src="fotos/web/DSC09882.JPG" loading="lazy" alt="Júlia montando o moodboard da marca Flossie" />
+          </div>
+          <div class="media inset">
+            <img src="fotos/web/DSC09889.JPG" loading="lazy" alt="Retrato de Júlia em ambiente acolhedor" />
+          </div>
+        </div>
+      </div>
+      <div class="split__text reveal" style="--d:.1s">
+        <p class="eyebrow">A história da Júlia</p>
+        <h2 class="h2">Como passei de lançamentos que davam prejuízo para uma marca que <em>gera desejo</em> antes mesmo de abrir o carrinho</h2>
+        <div class="story-body">
+          <p>No início da Flossie eu cometia um erro quase invisível — mas que aparecia direto no caixa.</p>
+          <p>Meus lançamentos eram improvisados. Sem planejamento, sem estrutura, sem intenção. O resultado? Energia gasta, expectativa alta e retorno baixo.</p>
+          <p>Depois de perder dinheiro, parei. Estudei. E desenhei uma estrutura simples que mudou tudo: aprendi a plantar desejo <strong>antes</strong> de abrir o carrinho.</p>
+          <p>Hoje, aos 22 anos, a Flossie não é mais só uma loja de roupas. É uma marca que cria experiência, que tem parceiros como Nuvemshop, Appmax, Olist e Mizui — e que mostra que dá pra crescer com intenção, não na sorte.</p>
+          <p>O que eu aprendi na prática é o que está dentro do <strong>Método Campanha Desejada</strong>.</p>
+          <p class="signature">— Júlia</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= O MÉTODO ============================= -->
+<section class="section bg-cream" id="metodo">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow center">O método</p>
+      <h2 class="h2">O Método <em>Campanha Desejada</em></h2>
+      <p class="lead">Um curso gravado e direto ao ponto para quem quer parar de improvisar e começar a lançar com estrutura.</p>
+    </div>
+
+    <div class="modules">
+      <!-- Estrutura real dos módulos pendente de definição com a Júlia -->
+      <article class="module-card is-todo reveal" style="--d:.04s">
+        <span class="module-num">Módulo 01</span>
+        <h3>[A DEFINIR]</h3>
+        <span class="todo">Conteúdo a definir</span>
+      </article>
+      <article class="module-card is-todo reveal" style="--d:.10s">
+        <span class="module-num">Módulo 02</span>
+        <h3>[A DEFINIR]</h3>
+        <span class="todo">Conteúdo a definir</span>
+      </article>
+      <article class="module-card is-todo reveal" style="--d:.16s">
+        <span class="module-num">Módulo 03</span>
+        <h3>[A DEFINIR]</h3>
+        <span class="todo">Conteúdo a definir</span>
+      </article>
+      <article class="module-card is-todo reveal" style="--d:.22s">
+        <span class="module-num">Módulo 04</span>
+        <h3>[A DEFINIR]</h3>
+        <span class="todo">Conteúdo a definir</span>
+      </article>
+      <article class="module-card is-todo reveal" style="--d:.28s">
+        <span class="module-num">Módulo 05</span>
+        <h3>[A DEFINIR]</h3>
+        <span class="todo">Conteúdo a definir</span>
+      </article>
+      <article class="module-card is-todo reveal" style="--d:.34s">
+        <span class="module-num">Bônus de conteúdo</span>
+        <h3>[A DEFINIR]</h3>
+        <span class="todo">Estrutura real do curso a confirmar</span>
+      </article>
+    </div>
+
+    <div class="format-strip reveal">
+      <div class="format-item">
+        <svg class="ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <div><h4>Aulas gravadas</h4><p>Assista no seu tempo, no seu ritmo.</p></div>
+      </div>
+      <div class="format-item">
+        <svg class="ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M8 21h8M12 17v4"/></svg>
+        <div><h4>Plataforma</h4><p><span class="todo">[A DEFINIR]</span></p></div>
+      </div>
+      <div class="format-item">
+        <svg class="ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 6 9 17l-5-5"/></svg>
+        <div><h4>Acesso imediato</h4><p>Liberado logo após a confirmação do pagamento.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= DIFERENCIAIS ============================= -->
+<section class="section bg-offwhite" id="diferenciais">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow center">Por que esse e não outro</p>
+      <h2 class="h2">Não é só mais um curso de <em>e-commerce</em></h2>
+      <p class="lead">Existe curso que te dá o que fazer. O Método Campanha Desejada te explica <em>por que</em> funciona — e aí você nunca mais fica presa no improviso.</p>
+    </div>
+
+    <div class="split narrow-media">
+      <div class="split__media reveal">
+        <div class="media r-4x5 framed">
+          <img src="fotos/web/DSC09906.JPG" loading="lazy" alt="Júlia em momento criativo, segurando a câmera" />
+        </div>
+      </div>
+      <div class="split__text reveal" style="--d:.1s">
+        <div class="compare">
+          <div class="compare__head">
+        <div class="c-other">Outros cursos</div>
+        <div class="c-ours">Método Campanha Desejada</div>
+      </div>
+      <div class="compare__row">
+        <div class="c-other">Template pronto pra copiar</div>
+        <div class="c-ours">Estrutura que você entende e adapta</div>
+      </div>
+      <div class="compare__row">
+        <div class="c-other">Raso, sem teoria</div>
+        <div class="c-ours">Prático com embasamento</div>
+      </div>
+      <div class="compare__row">
+        <div class="c-other">O que fazer</div>
+        <div class="c-ours">Por que fazer (e o que muda quando você entende)</div>
+      </div>
+          <div class="compare__row">
+            <div class="c-other">Foco em organização</div>
+            <div class="c-ours">Foco em gerar desejo de verdade</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= PARA QUEM É ============================= -->
+<section class="section bg-cream" id="para-quem">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow center">O fit certo</p>
+      <h2 class="h2">Esse método é <em>pra você</em> se…</h2>
+    </div>
+    <div class="fit-grid">
+      <div class="fit-cols">
+        <div class="fit-card reveal" style="--d:.06s">
+          <h3>É pra você se…</h3>
+          <ul class="fit-list">
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B2314" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Você tem uma loja (ou está montando) e seus lançamentos não performam como esperado.</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B2314" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Você sente que as peças são boas mas o desejo não chega até a cliente.</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B2314" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Você quer parar de improvisar e ter uma estrutura real de campanha.</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B2314" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Você está cansada de achar que o problema é o preço.</li>
+          </ul>
+        </div>
+        <div class="fit-card no reveal" style="--d:.14s">
+          <h3>E não é pra você se…</h3>
+          <ul class="fit-list">
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C4A2D" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>Você ainda não tem uma loja ou produto definido.</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C4A2D" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>Você quer uma fórmula mágica sem aplicar nada.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="split__media reveal" style="--d:.2s">
+        <div class="media r-3x4 framed">
+          <img src="fotos/web/DSC09824.JPG" loading="lazy" alt="Júlia em ensaio, clima editorial sereno" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= BÔNUS ============================= -->
+<section class="section bg-offwhite" id="bonus">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow center">Bônus exclusivo · primeiros dias</p>
+      <h2 class="h2">Para quem entrar nos <em>primeiros dias</em></h2>
+    </div>
+    <div class="split img-right" style="align-items:center;">
+      <div class="split__media reveal">
+        <div class="media r-4x5 framed">
+          <img src="fotos/web/DSC09816.JPG" loading="lazy" alt="Júlia sorrindo ao lado do moodboard da marca" />
+        </div>
+      </div>
+      <div class="split__text reveal" style="--d:.1s">
+        <div class="bonus-grid">
+          <article class="bonus-card">
+            <span class="b-num">1</span>
+            <span class="bonus-badge">Bônus 01</span>
+            <h3>Calendário Mensal de Campanhas</h3>
+            <p>Um calendário editável com as campanhas do mês já planejadas para você executar sem travar.</p>
+          </article>
+          <article class="bonus-card">
+            <span class="b-num">2</span>
+            <span class="bonus-badge">Bônus 02</span>
+            <h3>Artes de Campanhas Prontas</h3>
+            <p>Artes editáveis para você usar direto no seu perfil, sem precisar de designer.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+    <p class="bonus-note reveal">Esses bônus são exclusivos para as primeiras alunas. Depois do período de lançamento, serão vendidos separadamente.</p>
+  </div>
+</section>
+
+<!-- ============================= PREÇO + CTA ============================= -->
+<section class="section bg-dark" id="oferta">
+  <div class="container">
+    <div class="offer">
+      <div class="offer__media reveal">
+        <div class="media">
+          <img src="fotos/web/DSC09938.JPG" loading="lazy" alt="Júlia descontraída, sorrindo, no ensaio editorial" />
+        </div>
+      </div>
+      <div class="offer__text reveal" style="--d:.1s">
+        <p class="eyebrow on-dark">A oferta</p>
+        <h2 class="h2">Invista uma vez. Use para <em>todos</em> os seus lançamentos.</h2>
+
+        <div class="price-wrap">
+          <span class="price-from">Investimento</span>
+          <div class="price-row">
+            <span class="price-cur">R$</span>
+            <span class="price-val">497</span>
+          </div>
+          <div class="price-parc">
+            <span>à vista ou parcelado no cartão &middot; condição especial de lançamento</span>
+          </div>
+        </div>
+
+        <ul class="offer__includes">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Curso completo em aulas gravadas — assista no seu tempo</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Acesso imediato após a confirmação do pagamento</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Bônus dos primeiros dias: Calendário + Artes de Campanhas</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>7 dias de garantia incondicional</li>
+        </ul>
+
+        <a href="#" class="btn btn--light btn--block" data-cta="checkout">Quero entrar no Método Campanha Desejada <span class="arr">→</span></a>
+        <p style="margin:.9rem 0 0; font-size:.82rem; color:rgba(245,240,232,.6);">Pagamento 100% seguro &middot; acesso imediato após a confirmação</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= GARANTIA ============================= -->
+<section class="section bg-offwhite" id="garantia">
+  <div class="container">
+    <div class="guarantee reveal">
+      <svg class="guarantee__shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
+        <path d="M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5l-8-3Z"/>
+        <path d="m9 12 2 2 4-4"/>
+      </svg>
+      <div>
+        <p class="eyebrow">Garantia</p>
+        <h3>7 dias de garantia incondicional</h3>
+        <p>Se você não sentir que valeu, devolvemos 100% do seu investimento. Sem perguntas, sem burocracia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= FAQ ============================= -->
+<section class="section bg-cream" id="faq">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow center">Dúvidas frequentes</p>
+      <h2 class="h2">Ainda com alguma <em>pergunta?</em></h2>
+    </div>
+    <div class="faq-layout">
+      <div class="faq-media reveal">
+        <div class="media r-3x4 framed">
+          <img src="fotos/web/DSC09897.JPG" loading="lazy" alt="Retrato sereno de Júlia no sofá cor de caramelo" />
+        </div>
+      </div>
+      <div class="reveal" style="--d:.08s">
+        <div class="faq">
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Eu sou iniciante, vai ser muito avançado?<span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a"><div class="faq-a__inner">Não. O método foi desenhado justamente para quem está começando a estruturar seus lançamentos. Você não precisa ter experiência anterior.</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Funciona para qualquer nicho de e-commerce?<span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a"><div class="faq-a__inner">O curso é focado em moda/e-commerce de produtos físicos, especialmente loja própria. Se você tem loja de roupas, acessórios ou itens de lifestyle, está no lugar certo.</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Quando vou ter acesso?<span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a"><div class="faq-a__inner">Imediatamente após a confirmação do pagamento. As aulas são gravadas e você assiste no seu ritmo.</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">E se eu não gostar?<span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a"><div class="faq-a__inner">Você tem 7 dias para pedir reembolso integral, sem precisar justificar nada.</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Qual plataforma é ensinada?<span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a"><div class="faq-a__inner">O método usa Nuvemshop como plataforma de referência.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= FECHAMENTO ============================= -->
+<section class="closing" id="fechamento">
+  <div class="closing__media">
+    <img src="fotos/web/DSC09861.JPG" loading="lazy" alt="Júlia encostada na parede, retrato editorial" />
+  </div>
+  <div class="closing__scrim"></div>
+  <div class="closing__content container reveal">
+    <h2 class="closing-title">Suas próximas clientes já estão lá. Elas só precisam que você crie o <em>desejo certo.</em></h2>
+    <p>Você não precisa de mais produto. Você precisa de uma campanha que chega antes do carrinho abrir — e que faz a sua cliente sentir que precisa estar lá. É isso que o Método Campanha Desejada entrega.</p>
+    <a href="#oferta" class="btn btn--light">Quero criar campanhas que vendem de verdade <span class="arr">→</span></a>
+  </div>
+</section>
+
+<!-- ============================= FOOTER ============================= -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div>
+        <a href="#topo" class="logo">
+          <span class="logo__kicker">Método</span>
+          <span class="logo__name">Campanha Desejada</span>
+        </a>
+        <p class="footer__tag">Campanhas que geram desejo de forma previsível — por Júlia Cardoso Aragão, fundadora da Flossie.</p>
+      </div>
+      <div>
+        <p class="col-title">Navegação</p>
+        <nav class="footer__links">
+          <a href="#metodo">O método</a>
+          <a href="#diferenciais">Diferenciais</a>
+          <a href="#bonus">Bônus</a>
+          <a href="#oferta">Investimento</a>
+          <a href="#faq">Dúvidas</a>
+        </nav>
+      </div>
+      <div>
+        <p class="col-title">Contato</p>
+        <nav class="footer__links">
+          <a href="https://instagram.com/juliacardso" target="_blank" rel="noopener">Instagram @juliacardso</a>
+          <a href="https://wa.me/5563992078508" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="mailto:juliadaflossie@gmail.com">juliadaflossie@gmail.com</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Método Campanha Desejada · Júlia Cardoso Aragão. Todos os direitos reservados.</span>
+      <span style="display:flex; gap:18px;">
+        <a href="#" style="color:inherit;">Política de Privacidade</a>
+        <a href="#" style="color:inherit;">Termos de Uso</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================= SCRIPTS ============================= -->
+<!-- Meta Pixel / Google Analytics 4: inserir tags aqui antes do go-live -->
+<script>
+(function(){
+  "use strict";
+
+  /* Header: estado sólido ao rolar */
+  var header = document.getElementById('header');
+  var onScroll = function(){
+    if (window.scrollY > 40) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive:true });
+
+  /* Reveal on scroll */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
+      });
+    }, { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
+    reveals.forEach(function(el){ io.observe(el); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+
+  /* FAQ accordion */
+  var items = document.querySelectorAll('.faq-item');
+  items.forEach(function(item){
+    var btn = item.querySelector('.faq-q');
+    var ans = item.querySelector('.faq-a');
+    btn.addEventListener('click', function(){
+      var open = item.classList.contains('open');
+      // fecha os outros (comportamento de acordeão único)
+      items.forEach(function(other){
+        if (other !== item){
+          other.classList.remove('open');
+          other.querySelector('.faq-a').style.maxHeight = null;
+          other.querySelector('.faq-q').setAttribute('aria-expanded','false');
+        }
+      });
+      if (open){
+        item.classList.remove('open');
+        ans.style.maxHeight = null;
+        btn.setAttribute('aria-expanded','false');
+      } else {
+        item.classList.add('open');
+        ans.style.maxHeight = ans.scrollHeight + 'px';
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  // reajusta altura aberta no resize
+  window.addEventListener('resize', function(){
+    var openItem = document.querySelector('.faq-item.open .faq-a');
+    if (openItem) openItem.style.maxHeight = openItem.scrollHeight + 'px';
+  });
+
+  /* CTA de checkout — integrar com a plataforma de pagamento [A DEFINIR] */
+  document.querySelectorAll('[data-cta="checkout"]').forEach(function(el){
+    el.addEventListener('click', function(ev){
+      // Substituir por: window.location.href = 'URL_DO_CHECKOUT';
+      ev.preventDefault();
+      alert('Integrar este botão com o link de checkout da plataforma de pagamento (a definir).');
+    });
+  });
+})();
+</script>
+</body>
+</html>
