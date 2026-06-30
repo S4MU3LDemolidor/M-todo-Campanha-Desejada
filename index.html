@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Método Campanha Desejada · Julia Cardoso Aragão</title>
-<meta name="description" content="Aprenda a criar campanhas que geram desejo de verdade, com estrutura e intenção no lugar do improviso. O Método Campanha Desejada, por Júlia Cardoso Aragão." />
+<title>Método Coleção Desejada · Julia Cardoso Aragão</title>
+<meta name="description" content="Aprenda a criar coleções que geram desejo de verdade, com estrutura e intenção no lugar do improviso. O Método Coleção Desejada, por Júlia Cardoso Aragão." />
 
 <!-- Open Graph / compartilhamento (substituir og:image pela arte 1200x630 definitiva) -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Método Campanha Desejada · Julia Cardoso Aragão" />
-<meta property="og:description" content="Campanhas que geram desejo, criadas com estrutura e intenção. O Método Campanha Desejada." />
+<meta property="og:title" content="Método Coleção Desejada · Julia Cardoso Aragão" />
+<meta property="og:description" content="Coleções que geram desejo, criadas com estrutura e intenção. O Método Coleção Desejada." />
 <meta property="og:image" content="fotos/web/DSC09861.JPG" />
 <meta property="og:locale" content="pt_BR" />
 
@@ -19,7 +19,7 @@
 
 <!--
   ============================================================
-  Método Campanha Desejada — Página de vendas
+  Método Coleção Desejada — Página de vendas
   Júlia Cardoso Aragão
   HTML + CSS + JS puros · mobile-first · sem frameworks
   ------------------------------------------------------------
@@ -394,23 +394,12 @@ h1,h2,h3{ margin:0; font-weight:500; }
 /* ===========================================================
    O MÉTODO
    =========================================================== */
-.modules{ display:grid; gap:clamp(18px,2.4vw,28px); margin-top:0; grid-template-columns:1fr; }
-@media (min-width:620px){ .modules{ grid-template-columns:repeat(2,1fr); } }
-@media (min-width:980px){ .modules{ grid-template-columns:repeat(3,1fr); } }
-.module-card{
-  background:var(--white);
-  border:1px solid var(--cream);
-  border-radius:var(--radius);
-  padding:clamp(28px,3.4vw,40px);
-  box-shadow:var(--shadow-card);
-  transition:box-shadow .3s ease, transform .3s ease, border-color .3s ease;
-  display:flex; flex-direction:column; gap:1rem; min-height:220px;
-}
-.module-card:hover{ box-shadow:var(--shadow-card-h); transform:translateY(-3px); border-color:var(--beige); }
-.module-num{ font-family:var(--sans); font-weight:600; font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:var(--brown-mid); }
-.module-card h3{ font-family:var(--serif); font-weight:600; font-size:1.5rem; color:var(--brown-dark); line-height:1.15; }
-.module-card .module-desc{ color:var(--brown-mid); font-size:.98rem; line-height:1.6; }
-.module-card.is-todo{ background:repeating-linear-gradient(135deg,var(--white),var(--white) 12px,#faf7f1 12px,#faf7f1 24px); border-style:dashed; border-color:var(--beige); }
+.method-cover{ max-width:clamp(320px,44vw,460px); margin:0 auto clamp(56px,8vw,96px); }
+/* módulos em linhas alternadas (foto + texto) */
+.modules{ display:flex; flex-direction:column; gap:clamp(52px,8vw,104px); margin-top:0; }
+.module-num{ font-family:var(--sans); font-weight:600; font-size:.74rem; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); }
+.module-title{ font-family:var(--serif); font-weight:600; font-size:clamp(1.7rem,3vw,2.3rem); color:var(--brown-dark); line-height:1.08; margin:.7rem 0 1.1rem; }
+.module-desc{ color:var(--brown-mid); font-size:clamp(1rem,1.4vw,1.1rem); line-height:1.72; margin:0; }
 
 .format-strip{
   margin-top:clamp(48px,6vw,72px);
@@ -571,9 +560,9 @@ h1,h2,h3{ margin:0; font-weight:500; }
 <!-- ============================= HEADER ============================= -->
 <header class="site-header" id="header">
   <div class="site-header__inner">
-    <a href="#topo" class="logo" aria-label="Método Campanha Desejada">
+    <a href="#topo" class="logo" aria-label="Método Coleção Desejada">
       <span class="logo__kicker">Método</span>
-      <span class="logo__name">Campanha Desejada</span>
+      <span class="logo__name">Coleção Desejada</span>
     </a>
     <nav class="nav">
       <a href="#metodo">Método</a>
@@ -589,9 +578,9 @@ h1,h2,h3{ margin:0; font-weight:500; }
     <div class="hero__inner">
       <p class="eyebrow">Por Júlia Cardoso Aragão</p>
       <h1 class="display">Suas peças são <em>lindas</em>. O problema é que ninguém está esperando por elas.</h1>
-      <p class="hero__sub">Aprenda a criar campanhas que geram desejo de verdade, com estrutura e intenção, no lugar do improviso.</p>
+      <p class="hero__sub">Aprenda a criar coleções que geram desejo de verdade, com estrutura e intenção, no lugar do improviso.</p>
       <div class="hero__actions">
-        <a href="#oferta" class="btn">Quero criar campanhas que geram desejo <span class="arr">→</span></a>
+        <a href="#oferta" class="btn">Quero criar coleções que geram desejo <span class="arr">→</span></a>
       </div>
     </div>
   </div>
@@ -605,16 +594,16 @@ h1,h2,h3{ margin:0; font-weight:500; }
 <!-- ============================= MARQUEE ============================= -->
 <div class="marquee" aria-hidden="true">
   <div class="marquee__track">
-    <span class="marquee__item">Campanhas que geram desejo</span><span class="marquee__sep"></span>
+    <span class="marquee__item">Coleções que geram desejo</span><span class="marquee__sep"></span>
     <span class="marquee__item">Estrutura, não improviso</span><span class="marquee__sep"></span>
     <span class="marquee__item">Lance com intenção</span><span class="marquee__sep"></span>
-    <span class="marquee__item">Método Campanha Desejada</span><span class="marquee__sep"></span>
+    <span class="marquee__item">Método Coleção Desejada</span><span class="marquee__sep"></span>
     <span class="marquee__item">Desejo antes do carrinho</span><span class="marquee__sep"></span>
     <span class="marquee__item">Por Júlia Cardoso Aragão</span><span class="marquee__sep"></span>
-    <span class="marquee__item">Campanhas que geram desejo</span><span class="marquee__sep"></span>
+    <span class="marquee__item">Coleções que geram desejo</span><span class="marquee__sep"></span>
     <span class="marquee__item">Estrutura, não improviso</span><span class="marquee__sep"></span>
     <span class="marquee__item">Lance com intenção</span><span class="marquee__sep"></span>
-    <span class="marquee__item">Método Campanha Desejada</span><span class="marquee__sep"></span>
+    <span class="marquee__item">Método Coleção Desejada</span><span class="marquee__sep"></span>
     <span class="marquee__item">Desejo antes do carrinho</span><span class="marquee__sep"></span>
     <span class="marquee__item">Por Júlia Cardoso Aragão</span><span class="marquee__sep"></span>
   </div>
@@ -667,7 +656,7 @@ h1,h2,h3{ margin:0; font-weight:500; }
       </div>
     </div>
     <div class="callout callout--wide reveal">
-      <p>Eu já estive exatamente aí. E descobri que o problema não era o produto. Era a ausência de uma campanha com estrutura.</p>
+      <p>Eu já estive exatamente aí. E descobri que o problema não era o produto. Era a ausência de uma coleção com estrutura.</p>
     </div>
   </div>
 </section>
@@ -694,7 +683,7 @@ h1,h2,h3{ margin:0; font-weight:500; }
           <p>Meus lançamentos eram improvisados. Sem planejamento, sem estrutura, sem intenção. O resultado? Energia gasta, expectativa alta e retorno baixo.</p>
           <p>Depois de perder dinheiro, parei. Estudei. E desenhei uma estrutura simples que mudou tudo: aprendi a plantar desejo <strong>antes</strong> de abrir o carrinho.</p>
           <p>Hoje, aos 22 anos, a Flossie não é mais só uma loja de roupas. É uma marca que cria experiência, que tem parceiros como Nuvemshop, Appmax, Olist e Mizui, e que mostra que dá pra crescer com intenção, não na sorte.</p>
-          <p>O que eu aprendi na prática é o que está dentro do <strong>Método Campanha Desejada</strong>.</p>
+          <p>O que eu aprendi na prática é o que está dentro do <strong>Método Coleção Desejada</strong>.</p>
           <p class="signature">Júlia</p>
         </div>
       </div>
@@ -707,41 +696,51 @@ h1,h2,h3{ margin:0; font-weight:500; }
   <div class="container">
     <div class="section-head reveal">
       <p class="eyebrow center">O método</p>
-      <h2 class="h2">O Método <em>Campanha Desejada</em></h2>
-      <p class="lead">Um curso gravado e direto ao ponto para quem quer parar de improvisar e começar a lançar com estrutura.</p>
+      <h2 class="h2">O Método <em>Coleção Desejada</em></h2>
+      <p class="lead">Um curso gravado e direto ao ponto, em 4 módulos que vão do conceito da coleção até a estrutura de vendas.</p>
+    </div>
+
+    <div class="method-cover reveal">
+      <div class="media r-4x5 framed">
+        <img src="modulos/web/IMG_2504.jpg" loading="lazy" alt="Capa do Método Coleção Desejada" />
+      </div>
     </div>
 
     <div class="modules">
-      <!-- Estrutura real dos módulos pendente de definição com a Júlia -->
-      <article class="module-card is-todo reveal" style="--d:.04s">
-        <span class="module-num">Módulo 01</span>
-        <h3>[A DEFINIR]</h3>
-        <span class="todo">Conteúdo a definir</span>
+      <article class="split module-row reveal">
+        <div class="split__media"><div class="media r-4x5 framed"><img src="modulos/web/IMG_2505.jpg" loading="lazy" alt="Módulo 01 — Mentalidade e Fundamentos da Coleção" /></div></div>
+        <div class="split__text">
+          <span class="module-num">Módulo 01</span>
+          <h3 class="module-title">Mentalidade &amp; Fundamentos da Coleção</h3>
+          <p class="module-desc">As bases conceituais do método. Você entende a diferença entre uma simples seleção de produtos soltos e a estruturação de uma coleção intencional. Inclui o estudo do perfil da cliente, a análise de mercado e o mapeamento dos 7 Estilos Universais, com critérios pra classificar e agrupar os seus garimpos de forma coordenada.</p>
+        </div>
       </article>
-      <article class="module-card is-todo reveal" style="--d:.10s">
-        <span class="module-num">Módulo 02</span>
-        <h3>[A DEFINIR]</h3>
-        <span class="todo">Conteúdo a definir</span>
+
+      <article class="split img-right module-row reveal">
+        <div class="split__media"><div class="media r-4x5 framed"><img src="modulos/web/IMG_2506.jpg" loading="lazy" alt="Módulo 02 — Construção do Conceito" /></div></div>
+        <div class="split__text">
+          <span class="module-num">Módulo 02</span>
+          <h3 class="module-title">Construção do Conceito</h3>
+          <p class="module-desc">A materialização e a identidade visual da coleção. Você vê as diferenças entre os tipos de lançamento e o passo a passo pra definir o conceito central das suas peças. Inclui um checklist técnico de avaliação e orientações práticas pra construir e apresentar um Moodboard (painel visual de referências).</p>
+        </div>
       </article>
-      <article class="module-card is-todo reveal" style="--d:.16s">
-        <span class="module-num">Módulo 03</span>
-        <h3>[A DEFINIR]</h3>
-        <span class="todo">Conteúdo a definir</span>
+
+      <article class="split module-row reveal">
+        <div class="split__media"><div class="media r-4x5 framed"><img src="modulos/web/IMG_2507.jpg" loading="lazy" alt="Módulo 03 — Desenvolvimento Criativo e Planejamento" /></div></div>
+        <div class="split__text">
+          <span class="module-num">Módulo 03</span>
+          <h3 class="module-title">Desenvolvimento Criativo &amp; Planejamento</h3>
+          <p class="module-desc">Aqui você transforma referências abstratas em elementos visuais concretos. Aprende a traduzir o conceito escolhido com os estímulos visuais certos e técnicas de antecipação de coleção. Também organiza, na prática, o calendário de lançamentos e as ações que antecedem a apresentação dos produtos ao público.</p>
+        </div>
       </article>
-      <article class="module-card is-todo reveal" style="--d:.22s">
-        <span class="module-num">Módulo 04</span>
-        <h3>[A DEFINIR]</h3>
-        <span class="todo">Conteúdo a definir</span>
-      </article>
-      <article class="module-card is-todo reveal" style="--d:.28s">
-        <span class="module-num">Módulo 05</span>
-        <h3>[A DEFINIR]</h3>
-        <span class="todo">Conteúdo a definir</span>
-      </article>
-      <article class="module-card is-todo reveal" style="--d:.34s">
-        <span class="module-num">Bônus de conteúdo</span>
-        <h3>[A DEFINIR]</h3>
-        <span class="todo">Estrutura real do curso a confirmar</span>
+
+      <article class="split img-right module-row reveal">
+        <div class="split__media"><div class="media r-4x5 framed"><img src="modulos/web/IMG_2508.jpg" loading="lazy" alt="Módulo 04 — Estrutura de Vendas e Organização dos Canais" /></div></div>
+        <div class="split__text">
+          <span class="module-num">Módulo 04</span>
+          <h3 class="module-title">Estrutura de Vendas &amp; Organização dos Canais</h3>
+          <p class="module-desc">A preparação operacional dos canais antes da abertura do lançamento. Você organiza e alinha a identidade visual e o fluxo de navegação no Instagram, no e-shop/site e no suporte via WhatsApp, deixando toda a estrutura digital configurada pra receber a nova coleção.</p>
+        </div>
       </article>
     </div>
 
@@ -768,13 +767,13 @@ h1,h2,h3{ margin:0; font-weight:500; }
     <div class="section-head reveal">
       <p class="eyebrow center">Por que esse e não outro</p>
       <h2 class="h2">Não é só mais um curso de <em>e-commerce</em></h2>
-      <p class="lead">Existe curso que te dá o que fazer. O Método Campanha Desejada te explica <em>o porquê</em> por trás de cada escolha, pra você entender a lógica e adaptar pra sua marca.</p>
+      <p class="lead">Existe curso que te dá o que fazer. O Método Coleção Desejada te explica <em>o porquê</em> por trás de cada escolha, pra você entender a lógica e adaptar pra sua marca.</p>
     </div>
 
     <div class="compare reveal">
       <div class="compare__head">
         <div class="c-other">Outros cursos</div>
-        <div class="c-ours">Método Campanha Desejada</div>
+        <div class="c-ours">Método Coleção Desejada</div>
       </div>
       <div class="compare__row">
         <div class="c-other">Template pronto pra copiar</div>
@@ -886,7 +885,7 @@ h1,h2,h3{ margin:0; font-weight:500; }
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>7 dias de garantia incondicional</li>
         </ul>
 
-        <a href="#" class="btn btn--light btn--block" data-cta="checkout">Quero entrar no Método Campanha Desejada <span class="arr">→</span></a>
+        <a href="#" class="btn btn--light btn--block" data-cta="checkout">Quero entrar no Método Coleção Desejada <span class="arr">→</span></a>
         <p style="margin:.9rem 0 0; font-size:.82rem; color:rgba(245,240,232,.6);">Pagamento 100% seguro &middot; acesso imediato após a confirmação</p>
     </div>
   </div>
@@ -957,8 +956,8 @@ h1,h2,h3{ margin:0; font-weight:500; }
   </div>
   <div class="closing__scrim"></div>
   <div class="closing__content container reveal">
-    <h2 class="closing-title">O desejo não acontece por acaso. Ele se <em>constrói</em>, campanha por campanha.</h2>
-    <p>Você não precisa de mais produto. Precisa de uma campanha pensada com estrutura e intenção, desde antes de abrir o carrinho. É isso que você aprende no Método Campanha Desejada.</p>
+    <h2 class="closing-title">O desejo não acontece por acaso. Ele se <em>constrói</em>, coleção por coleção.</h2>
+    <p>Você não precisa de mais produto. Precisa de uma campanha pensada com estrutura e intenção, desde antes de abrir o carrinho. É isso que você aprende no Método Coleção Desejada.</p>
     <a href="#oferta" class="btn btn--light">Quero entrar no método <span class="arr">→</span></a>
   </div>
 </section>
@@ -970,9 +969,9 @@ h1,h2,h3{ margin:0; font-weight:500; }
       <div>
         <a href="#topo" class="logo">
           <span class="logo__kicker">Método</span>
-          <span class="logo__name">Campanha Desejada</span>
+          <span class="logo__name">Coleção Desejada</span>
         </a>
-        <p class="footer__tag">Campanhas que geram desejo, com estrutura e intenção. Por Júlia Cardoso Aragão, fundadora da Flossie.</p>
+        <p class="footer__tag">Coleções que geram desejo, com estrutura e intenção. Por Júlia Cardoso Aragão, fundadora da Flossie.</p>
       </div>
       <div>
         <p class="col-title">Navegação</p>
@@ -994,7 +993,7 @@ h1,h2,h3{ margin:0; font-weight:500; }
       </div>
     </div>
     <div class="footer__bottom">
-      <span>© 2026 Método Campanha Desejada · Júlia Cardoso Aragão. Todos os direitos reservados.</span>
+      <span>© 2026 Método Coleção Desejada · Júlia Cardoso Aragão. Todos os direitos reservados.</span>
       <span style="display:flex; gap:18px;">
         <a href="#" style="color:inherit;">Política de Privacidade</a>
         <a href="#" style="color:inherit;">Termos de Uso</a>
