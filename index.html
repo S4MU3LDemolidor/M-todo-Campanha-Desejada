@@ -6,6 +6,24 @@
 <title>Método Coleção Desejada · Julia Cardoso Aragão</title>
 <meta name="description" content="Aprenda a criar coleções que geram desejo de verdade, com estrutura e intenção no lugar do improviso. O Método Coleção Desejada, por Júlia Cardoso Aragão." />
 
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1544218297164840');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1544218297164840&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
 <!-- Open Graph / compartilhamento (substituir og:image pela arte 1200x630 definitiva) -->
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Método Coleção Desejada · Julia Cardoso Aragão" />
@@ -1121,9 +1139,18 @@ h1,h2,h3{ margin:0; font-weight:500; }
   /* CTA de checkout — integrar com a plataforma de pagamento [A DEFINIR] */
   document.querySelectorAll('[data-cta="checkout"]').forEach(function(el){
     el.addEventListener('click', function(ev){
+      // Meta Pixel: intenção de compra
+      if (window.fbq) fbq('track', 'InitiateCheckout');
       // Substituir por: window.location.href = 'URL_DO_CHECKOUT';
       ev.preventDefault();
       alert('Integrar este botão com o link de checkout da plataforma de pagamento (a definir).');
+    });
+  });
+
+  /* Meta Pixel: clique nos CTAs que levam à oferta (bom para remarketing) */
+  document.querySelectorAll('a[href="#oferta"]').forEach(function(el){
+    el.addEventListener('click', function(){
+      if (window.fbq) fbq('trackCustom', 'ClicouCTA');
     });
   });
 })();
